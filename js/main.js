@@ -15,23 +15,17 @@ const winningCombos = [
   [2, 4, 6]
 ];
 
-/*----- app's state (variables) -----*/
 let board;
 let turn;
 let winner;
 
-/*----- cached element references -----*/
 const squares = document.querySelectorAll('#board > div');
 const message = document.querySelector('h1');
 const button =  document.querySelector('button');
 
-/*----- event listeners -----*/
 document.querySelector('#board').addEventListener('click', handlePlay);
 document.querySelector('button').addEventListener('click', init);
 
-btnEL.addEventListener('click', init)
-
-/*----- functions -----*/
 
 init();
 
@@ -45,6 +39,7 @@ function init() {
 function render() {
   board.forEach(function(sq, idx) {
     squares[idx].style.background = lookup[sq];
+  
   });
   if (winner === 'T') {
     message.innerHTML = `Snatching Defeat from the Jaws of Victory- Tied! Try Again!`;
@@ -52,9 +47,8 @@ function render() {
     message.innerHTML = `Congrats ${lookup[winner].toUpperCase()}!`;
   } else {
     message.innerHTML = `${lookup[turn].toUpperCase()}'s Turn`;
-  btnEL.style.visibility = winner ? 'visible' : 'hidden';
   }}
-
+  
 function handlePlay(evt) {
   const idx = parseInt(evt.target.id.replace('sq', ''));
   if (board[idx] || winner) return;
